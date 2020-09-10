@@ -1,7 +1,42 @@
-version: 2.1
-orbs:
-  node: circleci/node@3.0.0
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build-job:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:latest
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run: npm install
+      - run: npm run build
+      - run: sudo apt-get update
+      - run: sudo apt-get install libxtst6 libgconf-2-4 libnss3 libasound2 libgtk-3-0 libxss1
+
+      - save_cache:
+          paths:
+            - node_modules
+            - dist
+            - package.json
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }} 
+
+      # run tests!
+      - run: npm run test
+
 workflows:
-  node-tests:
+  version: 2
+
+  -deploy:
     jobs:
-      - node/test
+      - build-job
