@@ -7,6 +7,6 @@ describe("My First Test", () => {
     cy.visit("/");
   });
   it("Visits the app root url", () => {
-    cy.contains("h1", "Welcome to Your Vue.js App");
+    cy.contains("h1", "UF ASE Homepage");
   });
 });
