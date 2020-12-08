@@ -2,7 +2,7 @@
   <div class="resources">
     <span class="bg"></span>
     <v-row>
-      <v-col>
+      <v-col md="4" offset-md="4" class="mt-14">
         <v-card elevation="2">
           <v-card-title align="center"><span align="center">UF Resources</span></v-card-title>
           <v-card-text align="center" class="welcome"><a href="https://catalog.ufl.edu/UGRD/colleges-schools/UGENG/SAE_UMN/">UF Sales Engineering Minor</a></v-card-text>
@@ -10,47 +10,54 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row >
+      <v-spacer></v-spacer>
       <v-col>
-        <v-card elevation="2">
-          <v-card-title align="center"><span align="center">FAQs</span></v-card-title>
-          <v-card-text align="left" class="welcome">
-            Q: What is Sales Engineering?<br />
-            <br />A: Sales engineering is a hybrid of sales and engineering that exists in industrial and commercial markets. Buying decisions in these markets are made differently than those in many consumer contexts, being based more on technical information and rational analysis and less on style, fashion, or impulse<br /><br /><br />
-            Q: What does a Sales Engineer do?<br /><br />
-            A: Some responsibilities include:
-            <ul>
-                <li>Prepare and deliver technical presentations that explain products or services to customers and prospective customers</li>
-                <li>Confer with customers and engineers to assess equipment needs and to determine system requirements</li>
-                <li>Collaborate with sales teams to understand customer requirements and provide sales support</li>
-                <li>Secure and renew orders and arrange delivery</li>
-                <li>Plan and modify products to meet customer needs</li>
-                <li>Help clients solve problems with installed equipment</li>
-                <li>Recommend improved materials or machinery to customers, showing how changes will lower costs or increase production</li>
-                <li>Help in researching and developing new products</li>
-            </ul><br /><br />
-            Q: What is the average Sales Engineer salary?<br /><br />
-            A: ~$114,000 based on Indeed.com listings
-          </v-card-text>
-        </v-card>
+          <VueFaqAccordion :items="myItems"/>
       </v-col>
-    </v-row>
+      <v-spacer></v-spacer>
+    </v-row>    
   </div>
 </template>
 
 <script>
+import VueFaqAccordion from 'vue-faq-accordion'
+
 // @ is an alias to /src
 export default {
-  name: "Home",
-  data() {
+  name: "Resources",
+  components: {
+    VueFaqAccordion
+  },
+  data () {
     return {
-      officers: "Executive Board",
+      myItems: [
+          {
+            title: 'Q: What is Sales Engineering?',
+            value: 'A: Sales engineering is a hybrid of sales and engineering that exists in industrial and commercial markets. Buying decisions in these markets are made differently than those in many consumer contexts, being based more on technical information and rational analysis and less on style, fashion, or impulse',
+            category: 'FAQs'
+          },
+          {
+            title: 'Q: What does a Sales Engineer do?',
+            value: 'A: Some responsibilities include: <br />- Prepare and deliver technical presentations that explain products or services to customers and prospective customers <br />- Confer with customers and engineers to assess equipment needs and to determine system requirements <br />- Collaborate with sales teams to understand customer requirements and provide sales support <br />- Secure and renew orders and arrange delivery <br />- Plan and modify products to meet customer needs <br />- Help clients solve problems with installed equipment <br />Recommend improved materials or machinery to customers, showing how changes will lower costs or increase production <br />- Help in researching and developing new products',
+            category: 'FAQs'
+          },
+          {
+            title: 'Q: What is the average Sales Engineer salary?',
+            value: 'A: ~$114,000 based on Indeed.com listings',
+            category: 'FAQs'
+          }
+        ]
     }
   },
 };
 </script>
 
 <style scoped>
+.faq {
+  border-radius: 5px;
+}
+
 .uf-logo {
   display: block;
   margin-left: auto;
