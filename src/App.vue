@@ -13,12 +13,28 @@
             <v-list-item-title>User Portal</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item @click="navigate('home')">
+          <v-list-item-action>
+            <v-icon>{{ icons.mdiHome }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item @click="navigate('about')">
           <v-list-item-action>
             <v-icon>{{ icons.mdiAccountGroup }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>About Us</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item @click="navigate('resources')">
+          <v-list-item-action>
+            <v-icon>{{ icons.mdiFrequentlyAskedQuestions }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Resources</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item @click="navigate('events')">
@@ -130,12 +146,16 @@
     </v-dialog>
     <v-app-bar
       app
-      color="blue-grey darken-1"
+      color="darkgrey"
       dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title @click="navigate('home')">UF ASE</v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn depressed href="https://join.slack.com/t/associationof-9co5938/shared_invite/zt-jxleu7wg-wSXsMduHMK2hDUbLuf_LjQ">Join</v-btn>
+      </v-toolbar-items>
+      <img class="toolbar-logo" :src="require('../static/ase.png')" height="60" @click="navigate('home')"/>
     </v-app-bar>
 
     <v-main>
@@ -145,6 +165,8 @@
 </template>
 
 <script>
+import { mdiHome } from '@mdi/js';
+import { mdiFrequentlyAskedQuestions } from '@mdi/js';
 import { mdiAccountGroup } from '@mdi/js';
 import { mdiCalendarMultiple } from '@mdi/js';
 import { mdiAccountTie } from '@mdi/js';
@@ -160,6 +182,8 @@ export default {
 
   data: () => ({
     icons: {
+      mdiHome,
+      mdiFrequentlyAskedQuestions,
       mdiAccountGroup,
       mdiCalendarMultiple,
       mdiAccountTie,
@@ -181,8 +205,12 @@ export default {
   }),
   methods: {
     navigate(page) {
-      if (page == 'about') {
+      if (page == 'home') {
+        this.$router.push({ name: 'Home' });
+      } else if (page == 'about') {
         this.$router.push({ name: 'About' });
+      } else if (page =='resources') {
+        this.$router.push({ name: 'Resources' });
       } else if (page =='events') {
         this.$router.push({ name: 'Events' });
       } else if (page =='jobs') {
@@ -267,3 +295,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  .toolbar-logo {
+    display: block;
+    margin-left: 10px;
+    margin-right: auto;
+  }
+</style>
