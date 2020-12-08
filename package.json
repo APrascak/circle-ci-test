@@ -5,16 +5,19 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test": "npm run test:unit && npm run test:e2e_headless",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
     "test:e2e_headless": "vue-cli-service test:e2e --headless",
-    "test:unit": "vue-cli-service test:unit",
-    "test": "npm run test:unit && npm run test:e2e_headless"
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@mdi/js": "^5.8.55",
     "core-js": "^3.6.5",
+    "firebase": "^8.0.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
+    "vuetify": "^2.3.14",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
@@ -26,11 +29,16 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.1.0",
+    "deepmerge": "^4.2.2",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-vue": "^6.2.2",
     "prettier": "^1.19.1",
-    "vue-template-compiler": "^2.6.11"
+    "sass": "^1.27.0",
+    "sass-loader": "^10.0.3",
+    "vue-cli-plugin-vuetify": "^2.0.7",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.3.0"
   },
   "eslintConfig": {
     "root": true,
